@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sealHkthon.Entities.ThuanVCT", "sealHkthon.Entities.ThuanVCT\sealHkthon.Entities.ThuanVCT.csproj", "{03A93ED4-55CD-4EE1-A413-5E82D172FCC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sealHkthon.Repositories.ThuanVCT", "sealHkthon.Repositories.ThuanVCT\sealHkthon.Repositories.ThuanVCT.csproj", "{BC6AC99B-9A12-4556-9A5A-231983CC6968}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sealHkthon.Services.ThuanVCT", "sealHkthon.Services.ThuanVCT\sealHkthon.Services.ThuanVCT.csproj", "{AA21765F-555A-4576-BDA0-B947AE70A0AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sealHkthon.RazorWebApp.ThuanVCT", "sealHkthon.RazorWebApp.ThuanVCT\sealHkthon.RazorWebApp.ThuanVCT.csproj", "{0BDE4CBC-F660-4CED-A9F3-50458E02BC6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03A93ED4-55CD-4EE1-A413-5E82D172FCC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A93ED4-55CD-4EE1-A413-5E82D172FCC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A93ED4-55CD-4EE1-A413-5E82D172FCC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A93ED4-55CD-4EE1-A413-5E82D172FCC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC6AC99B-9A12-4556-9A5A-231983CC6968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC6AC99B-9A12-4556-9A5A-231983CC6968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC6AC99B-9A12-4556-9A5A-231983CC6968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC6AC99B-9A12-4556-9A5A-231983CC6968}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA21765F-555A-4576-BDA0-B947AE70A0AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA21765F-555A-4576-BDA0-B947AE70A0AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA21765F-555A-4576-BDA0-B947AE70A0AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA21765F-555A-4576-BDA0-B947AE70A0AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BDE4CBC-F660-4CED-A9F3-50458E02BC6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BDE4CBC-F660-4CED-A9F3-50458E02BC6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BDE4CBC-F660-4CED-A9F3-50458E02BC6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BDE4CBC-F660-4CED-A9F3-50458E02BC6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

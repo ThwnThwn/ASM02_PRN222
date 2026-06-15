@@ -1,0 +1,125 @@
+## .gitignore for .NET / ASP.NET Core Razor Web App
+
+# ========================
+# Build outputs
+# ========================
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# ========================
+# Visual Studio files
+# ========================
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ========================
+# .NET Core
+# ========================
+project.lock.json
+project.fragment.lock.json
+*.publishsettings
+orleans.codegen.cs
+
+# ========================
+# ASP.NET Core
+# ========================
+**/wwwroot/lib/
+**/bundleconfig.json
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+
+# ========================
+# Entity Framework
+# ========================
+*.mdf
+*.ldf
+*.ndf
+
+# ========================
+# Rider / JetBrains
+# ========================
+.idea/
+*.sln.iml
+
+# ========================
+# OS generated files
+# ========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ========================
+# Azure / Publish profiles
+# ========================
+*.pubxml
+*.pubxml.user
+**/Properties/PublishProfiles/
+
+# ========================
+# Test results
+# ========================
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+*.coverage
+*.coveragexml
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+TestResult.xml
+
+# ========================
+# Temporary files
+# ========================
+*.tmp
+*.temp
+*.bak
+*.cache
+*.orig
+~$*
+
+# ========================
+# Environment / secrets
+# ========================
+.env
+.env.*
+secrets.json
+**/*secrets*.json
