@@ -14,6 +14,15 @@ namespace sealHkthon.RazorWebApp.ThuanVCT.Pages.EventsThuanVcts
     {
         private readonly IEventsThuanVctService _eventsThuanVct;
 
+        [BindProperty(SupportsGet = true)]
+        public string eventName { get; set; } = default;
+
+        [BindProperty(SupportsGet = true)]
+        public string roundName { get; set; } = default;
+
+        [BindProperty(SupportsGet = true)]
+        public int status { get; set; } = default;
+
         public IndexModel(IEventsThuanVctService eventsThuanVct)
         {
             _eventsThuanVct = eventsThuanVct;
@@ -23,7 +32,7 @@ namespace sealHkthon.RazorWebApp.ThuanVCT.Pages.EventsThuanVcts
 
         public async Task OnGetAsync()
         {
-            EventsThuanVct = await _eventsThuanVct.GetAllAsync();
+            EventsThuanVct = await _eventsThuanVct.SearchAsync(eventName, roundName, status);
         }
     }
 }

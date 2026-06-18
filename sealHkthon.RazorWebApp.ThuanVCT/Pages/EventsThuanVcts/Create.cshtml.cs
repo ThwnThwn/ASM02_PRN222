@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,26 +22,48 @@ namespace sealHkthon.RazorWebApp.ThuanVCT.Pages.EventsThuanVcts
             _roundThuanVct = roundThuanVct;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            ViewData["RoundName"] = new SelectList((await _roundThuanVct.GetAllAsync()), "RoundName", "RoundName");
+
+            if (EventsThuanVct == null)
+            {
+                EventsThuanVct = new EventsThuanVct
+                {
+                    PublishDate = DateTime.Now,
+                    IsActive = true
+                };
+            }
+
             return Page();
-        }
+        }   
 
         [BindProperty]
         public EventsThuanVct EventsThuanVct { get; set; } = default!;
+
+        [BindProperty]
+        public string? SelectedRoundName { get; set; }
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                ViewData["RoundName"] = new SelectList((await _roundThuanVct.GetAllAsync()), "RoundName", "RoundName", SelectedRoundName);
                 return Page();
             }
 
             //_context.EventsThuanVcts.Add(EventsThuanVct);
             //await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            var result = await _eventThuanVct.CreateAsync(EventsThuanVct);
+
+            if (result > 0)
+            {
+                return RedirectToPage("./Index");
+            }
+
+            return Page();
         }
     }
 }

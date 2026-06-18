@@ -10,6 +10,35 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+<div class="row">
+    <form method="get">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-label"></label>
+                    <input asp-for="@Model.eventName" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-label"></label>
+                    <input asp-for="@Model.roundName" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-label"></label>
+                    <input asp-for="@Model.status" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <input type="submit" value="Search" class="btn btn-sm btn-primary"></>
+            </div>
+
+
+        </div>
+    </form>
+</div>
 <table class="table">
     <thead>
         <tr>

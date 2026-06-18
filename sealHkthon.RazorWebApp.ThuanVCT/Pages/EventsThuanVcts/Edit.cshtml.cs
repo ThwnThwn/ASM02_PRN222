@@ -1,27 +1,31 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using sealHkthon.Entities.ThuanVCT.Models;
-using sealHkthon.Repositories.ThuanVCT.DBContext;
+using sealHkthon.Services.ThuanVCT;
 
 namespace sealHkthon.RazorWebApp.ThuanVCT.Pages.EventsThuanVcts
 {
     public class EditModel : PageModel
     {
-        private readonly sealHkthon.Repositories.ThuanVCT.DBContext.PRN222_HACKATHONContext _context;
+        private readonly IEventsThuanVctService _eventThuanVct;
+        private readonly IRoundsThuanVctService _roundThuanVct;
 
-        public EditModel(sealHkthon.Repositories.ThuanVCT.DBContext.PRN222_HACKATHONContext context)
+        public EditModel(IEventsThuanVctService eventThuanVct, IRoundsThuanVctService roundThuanVct)
         {
-            _context = context;
+            _eventThuanVct = eventThuanVct;
+            _roundThuanVct = roundThuanVct;
         }
 
         [BindProperty]
         public EventsThuanVct EventsThuanVct { get; set; } = default!;
+
+        [BindProperty]
+        public string? SelectedRoundName { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,48 +34,41 @@ namespace sealHkthon.RazorWebApp.ThuanVCT.Pages.EventsThuanVcts
                 return NotFound();
             }
 
-            var eventsthuanvct =  await _context.EventsThuanVcts.FirstOrDefaultAsync(m => m.EventThuanVctid == id);
+            var eventsthuanvct = await _eventThuanVct.GetByIdAsync(id.Value);
             if (eventsthuanvct == null)
             {
                 return NotFound();
             }
+
             EventsThuanVct = eventsthuanvct;
+
+            var rounds = await _roundThuanVct.GetAllAsync();
+            if (SelectedRoundName == null)
+            {
+                SelectedRoundName = rounds.FirstOrDefault()?.RoundName;
+            }
+
+            ViewData["RoundName"] = new SelectList(rounds, "RoundName", "RoundName", SelectedRoundName);
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                var rounds = await _roundThuanVct.GetAllAsync();
+                ViewData["RoundName"] = new SelectList(rounds, "RoundName", "RoundName", SelectedRoundName);
                 return Page();
             }
 
-            _context.Attach(EventsThuanVct).State = EntityState.Modified;
+            var result = await _eventThuanVct.UpdateAsync(EventsThuanVct);
 
-            try
+            if (result > 0)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EventsThuanVctExists(EventsThuanVct.EventThuanVctid))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return RedirectToPage("./Index");
             }
 
-            return RedirectToPage("./Index");
-        }
-
-        private bool EventsThuanVctExists(int id)
-        {
-            return _context.EventsThuanVcts.Any(e => e.EventThuanVctid == id);
+            return Page();
         }
     }
 }

@@ -1,22 +1,21 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using sealHkthon.Entities.ThuanVCT.Models;
-using sealHkthon.Repositories.ThuanVCT.DBContext;
+using sealHkthon.Services.ThuanVCT;
 
 namespace sealHkthon.RazorWebApp.ThuanVCT.Pages.EventsThuanVcts
 {
     public class DeleteModel : PageModel
     {
-        private readonly sealHkthon.Repositories.ThuanVCT.DBContext.PRN222_HACKATHONContext _context;
+        private readonly IEventsThuanVctService _eventThuanVct;
 
-        public DeleteModel(sealHkthon.Repositories.ThuanVCT.DBContext.PRN222_HACKATHONContext context)
+        public DeleteModel(IEventsThuanVctService eventThuanVct)
         {
-            _context = context;
+            _eventThuanVct = eventThuanVct;
         }
 
         [BindProperty]
@@ -29,16 +28,14 @@ namespace sealHkthon.RazorWebApp.ThuanVCT.Pages.EventsThuanVcts
                 return NotFound();
             }
 
-            var eventsthuanvct = await _context.EventsThuanVcts.FirstOrDefaultAsync(m => m.EventThuanVctid == id);
+            var eventsthuanvct = await _eventThuanVct.GetByIdAsync(id.Value);
 
             if (eventsthuanvct == null)
             {
                 return NotFound();
             }
-            else
-            {
-                EventsThuanVct = eventsthuanvct;
-            }
+
+            EventsThuanVct = eventsthuanvct;
             return Page();
         }
 
@@ -49,13 +46,7 @@ namespace sealHkthon.RazorWebApp.ThuanVCT.Pages.EventsThuanVcts
                 return NotFound();
             }
 
-            var eventsthuanvct = await _context.EventsThuanVcts.FindAsync(id);
-            if (eventsthuanvct != null)
-            {
-                EventsThuanVct = eventsthuanvct;
-                _context.EventsThuanVcts.Remove(EventsThuanVct);
-                await _context.SaveChangesAsync();
-            }
+            var result = await _eventThuanVct.DeleteAsync(id.Value);
 
             return RedirectToPage("./Index");
         }
